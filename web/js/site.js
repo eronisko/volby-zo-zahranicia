@@ -322,57 +322,61 @@ if (type==="TP" || type ==="noTP"){
 
 
 }
-if(type === "ps"){
-preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu a splnomocnenie na jeho prevzatie';
-preukazDelivery = [
-{
-			text: 'Na prevzatie hlasovacieho preukazu podľa § 46 ods. 6 zákona  splnomocňujem:',
-			style: 'line',
-			alignment: 'left'
-		},
-		{ 
-			text: 'Meno: ' + $('#proxy-name').val() + ' Priezvisko: ' + $('#proxy-lastname').val(),
-			style: 'line',
-			//style: 'header', 
-		//	bold: false 
-		},
+	if(type === "ps"){
+		preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu a splnomocnenie na jeho prevzatie';
+		preukazDelivery = [
 		{
-			text: 'Číslo občianskeho preukazu: ' + $('#proxy-idno').val(),
-			style: 'line'
-		}
-]
-}
+				text: 'Na prevzatie hlasovacieho preukazu podľa § 46 ods. 6 zákona  splnomocňujem:',
+				style: 'line',
+				alignment: 'left'
+			},
+			{ 
+				columns:[
+					{
+						text: ['Meno: ',{text: $('#proxy-name').val(),style: 'value'} ],
+					},
+					{
+						text: ['Priezvisko: ',{text: $('#proxy-lastname').val(),style: 'value'} ],
+					}
+				]
+			},
+			{
+				text: ['Číslo občianskeho preukazu: ',{text: $('#proxy-idno').val(),style: 'value'} ],
+				style: 'line'
+			}
+		]
+	}
 
-if(type === "pp"){
-preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu';
-preukazDelivery = [
-{
-			text: 'Hlasovací preukaz žiadam zaslať na adresu:',
-			style: 'line',
-			alignment: 'left'
-		},
-		{
-			columns:[
-				{
-					text: ['Meno: ',{text: $('#basicinfo-name').val(),style: 'value'} ],
-					style: 'line',
-					//style: 'header', 
-				//	bold: false 
-				},
-				{
-					text: ['Priezvisko: ' ,{text: $('#basicinfo-lastname').val(),style: 'value'} ],
-					style: 'line',
-					//style: 'header', 
-				//	bold: false 
-				},
-			]
-		},
-		{
-			text: [ 'Adresa: ',{text: $('#addressforeign-street').val() + ', ' + $('#addressforeign-streetno').val() + ', ' + $('#addressforeign-city').val() + ', ' + $('#addressforeign-zip').val()  + ', ' + $('#addressforeign-country').val(),style: 'value'} ],
-			style: 'line'
-		}
-]
-}
+	if(type === "pp"){
+		preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu';
+		preukazDelivery = [
+			{
+				text: 'Hlasovací preukaz žiadam zaslať na adresu:',
+				style: 'line',
+				alignment: 'left'
+			},
+			{
+				columns:[
+					{
+						text: ['Meno: ',{text: $('#basicinfo-name').val(),style: 'value'} ],
+						style: 'line',
+						//style: 'header', 
+					//	bold: false 
+					},
+					{
+						text: ['Priezvisko: ' ,{text: $('#basicinfo-lastname').val(),style: 'value'} ],
+						style: 'line',
+						//style: 'header', 
+					//	bold: false 
+					},
+				]
+			},
+			{
+				text: [ 'Adresa: ',{text: $('#addressforeign-street').val() + ', ' + $('#addressforeign-streetno').val() + ', ' + $('#addressforeign-city').val() + ', ' + $('#addressforeign-zip').val()  + ', ' + $('#addressforeign-country').val(),style: 'value'} ],
+				style: 'line'
+			}
+		]
+	}
 
 if(type === "pp" || type === "ps"){
 	formContent = [

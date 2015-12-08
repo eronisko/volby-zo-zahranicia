@@ -19,7 +19,6 @@ $this->title = 'Volby zo zahranicia';
         <p><a class="btn btn-lg btn-success" href="#preukaz-zahranicie" role="button">Zacni</a></p>
     </div>
 
-    <iframe class="preview-pane" width="100%" height="650" frameborder="0" src=""></iframe>
 
     <div class="body-content">
 
@@ -81,7 +80,7 @@ $this->title = 'Volby zo zahranicia';
             
             <?= $form->field($basicInfo, 'name') ?>
             <?= $form->field($basicInfo, 'lastname') ?>
-            <?= $form->field($basicInfo, 'virginLastname') ?>
+            <?= $form->field($basicInfo, 'maidenLastname') ?>
             <?= $form->field($basicInfo, 'birthNo') ?>
 
             <?php ActiveForm::end() ?>
@@ -142,9 +141,7 @@ $this->title = 'Volby zo zahranicia';
         <div class="row section" id="sign">
             <div class="col-lg-12">
                         <div class="signature-pad">
-                            <canvas style="border: 3px solid #f4f4f4;"></canvas>
-        
-                            <input style="display:none" id="signature" type="text">
+                            <canvas></canvas>
                         </div>
                     <div class="signature-controls">
                         <button id="clear-button" class="btn btn-default">Vycist</button>

@@ -95,4 +95,12 @@ a.desc:after {
     margin-bottom: 350px;
 }
 
-.chosen {}
+.signature-pad {
+    border: 3px solid #f4f4f4;
+}
+
+.signature-pad
+    canvas {
+    width: 100%;
+    height: 100%;
+}

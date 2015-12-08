@@ -260,7 +260,7 @@ if (type==="TP" || type ==="noTP"){
 		//	bold: false 
 		},
 		{ 
-			text: 'Rodné priezvisko: ' + $('#basicinfo-virginlastname').val(),
+			text: 'Rodné priezvisko: ' + $('#basicinfo-maidenlastname').val(),
 			style: 'line',
 			//style: 'header', 
 		//	bold: false 

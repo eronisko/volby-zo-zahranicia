@@ -12,7 +12,7 @@ class BasicInfo extends Model
 {
     public $name;
     public $lastname;
-    public $virginLastname;
+    public $maidenLastname;
     public $birthNo;
 
     /**

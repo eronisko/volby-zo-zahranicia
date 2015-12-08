@@ -96,6 +96,15 @@ function createDocument(preview){
 	if($('#signature').val() != '') 
 			signature = 
 				[	
+					{ text: '', style: 'space'},
+					{ 
+						text: ['V ',{ text: $('#addressforeign-city').val(),style: 'value'} ],
+						style: 'footer',
+					},
+					{ 
+						text: ['Dátum: ',{text: ''+dd +'. ' + mm + '. ' + yyyy,style: 'value'} ],
+						style: 'footer',
+					},
 					{ 
 						image: $('#signature').val(), width:100, style : 'signatureStyle' 
 					},
@@ -113,8 +122,10 @@ function createDocument(preview){
 				style:'signature'
 			}
 		]
-	} 
+	}
 
+	
+	
 if(type == 'TP'){
 	paragraph = 'Podľa   § 60 ods. 1   zákona   č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov žiadam o voľbu poštou pre voľby do Národnej rady Slovenskej republiky v roku 2016.';
 	localaddress = [
@@ -164,6 +175,8 @@ if(type == 'TP'){
 }else if(type == 'noTP'){
 	paragraph = 'Podľa   § 59 ods. 1   zákona   č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov žiadam o voľbu poštou pre voľby do Národnej rady Slovenskej republiky v roku 2016 a o zaslanie hlasovacích lístkov a obálok na adresu:';
 	noTP = [
+	
+		{text:'',style:'spacesmall'},
 			{
 				text:'Prílohy:',
 				style: 'header',
@@ -173,16 +186,6 @@ if(type == 'TP'){
 				'čestné vyhlásenie voliča, že nemá trvalý pobyt na území Slovenskej republiky.',
 				'fotokópia časti cestovného dokladu Slovenskej republiky s osobnými údajmi voliča alebo fotokópia osvedčenia o štátnom občianstve Slovenskej republiky voliča.',
 			]}
-			/*{
-				text:'čestné vyhlásenie voliča, že nemá trvalý pobyt na území Slovenskej republiky.',
-				style: 'line',
-				alignment: 'left'
-			},
-			{
-				text:'fotokópia časti cestovného dokladu Slovenskej republiky s osobnými údajmi voliča alebo fotokópia osvedčenia o štátnom občianstve Slovenskej republiky voliča.',
-				style: 'line',
-				alignment: 'left'
-			}*/
 	];
 	vyhlasenie = [
 
@@ -195,39 +198,30 @@ if(type == 'TP'){
 						text: $('#addressforeign-street').val() + ', ' + $('#addressforeign-streetno').val() + ', ' + $('#addressforeign-city').val() + ', ' + $('#addressforeign-zip').val()  + ', ' + $('#addressforeign-country').val(),
 						alignment: 'center',
 					},
+					
+					{text:'',style:'space'},
 					{ 
 						text: 'ČESTNÉ VYHLÁSENIE', 
 						style: 'header', 
 						alignment: 'center' 
 					},
+					{text:'',style:'space'},
 					{
 						text: 'Na účely voľby poštou do Národnej rady Slovenskej republiky v roku 2016',
 						alignment: 'center' 
 					},
+					{text:'',style:'space'},
 					{ 
 						text: 'čestne vyhlasujem,', 
 						style: 'header', 
 						alignment: 'center' 
 					},
+					{text:'',style:'space'},
 					{
 						text: 'že nemám trvalý pobyt na území Slovenskej republiky.'
 					},
-					{ 
-						text: 'V ' + $('#addressforeign-city').val(),
-						style: 'footer',
-						//style: 'header', 
-					//	bold: false 
-					},
-					{ 
-						text: 'Dátum:',
-						style: 'footer',
-						//style: 'header', 
-					//	bold: false 
-					},
-					{
-			
-					},
-					signature,
+					{text:'',style:'space'},
+					signature
 
 	];
 
@@ -436,19 +430,6 @@ if(type === "pp" || type === "ps"){
 var dd = {
 	content: [
 		formContent,
-
-		{ text: '', style: 'space'},
-		{ 
-			text: ['V ',{ text: $('#addressforeign-city').val(),style: 'value'} ],
-			style: 'footer',
-		},
-		{ 
-			text: ['Dátum: ',{text: ''+dd +'. ' + mm + '. ' + yyyy,style: 'value'} ],
-			style: 'footer',
-		},
-		{
-
-		},
 		signature,
 		vyhlasenie,
 		idPhoto,

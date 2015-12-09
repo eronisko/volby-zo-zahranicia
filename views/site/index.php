@@ -6,15 +6,15 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 
-$this->title = 'Volby zo zahranicia';
+$this->title = 'Voľby zo zahraničia';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Vytvorte si ziadost!</h1>
+        <h1>Vytvorte si žiadost!</h1>
 
-        <p class="lead">pre volbu zo zahranicia alebo volebny preukaz</p>
-        <p class="lead">DISCLAIMER: TEXTY + VZHLAD SU DOCASNE. Komentare su vitane, zatial sa sustredim na UX(nie UI) a funkcnost</p>
+        <p class="lead">pre voľbu zo zahraničia alebo volebný preukaz</p>
+        <p class="lead">DISCLAIMER: TEXTY + VZHLAD SÚ DOČASNÉ. Komentáre sú vítané, zatiaľ sa sustredím na UX(nie UI) a funkčnosť</p>
 
         <p><a class="btn btn-lg btn-success" href="#preukaz-zahranicie" role="button">Zacni</a></p>
     </div>
@@ -24,8 +24,8 @@ $this->title = 'Volby zo zahranicia';
 
     <div class="row section" id="preukaz-zahranicie">
         <div class="col-lg-12">
-            <p><a class="btn btn-lg btn-success" href="#preukaz" role="button" onclick="getChoice(this)">Chcem hlasovaci preukaz</a></p>
-            <p><a class="btn btn-lg btn-success" href="#zahranicie" role="button" onclick="getChoice(this)">Chcem volit zo zahranicia</a></p>
+            <p><a class="btn btn-lg btn-success" href="#preukaz" role="button" onclick="getChoice(this)">Chcem hlasovací preukaz</a></p>
+            <p><a class="btn btn-lg btn-success" href="#zahranicie" role="button" onclick="getChoice(this)">Chcem voliť zo zahraničia</a></p>
           
         </div>
     </div>
@@ -33,15 +33,15 @@ $this->title = 'Volby zo zahranicia';
 
     <div class="row section" id="zahranicie">
         <div class="col-lg-12">
-            <p><a class="btn btn-lg btn-success" href="#mamTP" role="button" onclick="mamTP()">Mam trvaly pobyt na slovensku</a></p>
-            <p><a class="btn btn-lg btn-success" href="#ziadost" role="button" onclick="nemamTP()">Nemam trvaly pobyt na slovensku</a></p>         
+            <p><a class="btn btn-lg btn-success" href="#mamTP" role="button" onclick="mamTP()">Mám trvalý pobyt na slovensku</a></p>
+            <p><a class="btn btn-lg btn-success" href="#ziadost" role="button" onclick="nemamTP()">Nemám trvalý pobyt na slovensku</a></p>         
             <input style="display:none" id="tpFlag" value="">
         </div>
     </div>
 
     <div class="row section" id="preukaz">
         <div class="col-lg-12">
-            <p><a class="btn btn-lg btn-success" href="#mamTP" role="button" onclick="preukazPoslat()">Preukaz chcem poslat</a></p>
+            <p><a class="btn btn-lg btn-success" href="#mamTP" role="button" onclick="preukazPoslat()">Preukaz chcem poslať</a></p>
             <p><a class="btn btn-lg btn-success" href="#mamTP" role="button" onclick="preukazSplnomocnenec()">Preukaz preberie splnomocnenec</a></p>         
             <input style="display:none" id="tpFlag" value="">
         </div>
@@ -78,10 +78,10 @@ $this->title = 'Volby zo zahranicia';
                 'options' => ['class' => 'form-horizontal'],
             ]) ?>
             
-            <?= $form->field($basicInfo, 'name') ?>
-            <?= $form->field($basicInfo, 'lastname') ?>
-            <?= $form->field($basicInfo, 'maidenLastname') ?>
-            <?= $form->field($basicInfo, 'birthNo') ?>
+            <?= $form->field($basicInfo, 'name')->textInput()->hint('Zadajte prosím svoje krstné meno')->label('Meno') ?>
+            <?= $form->field($basicInfo, 'lastname')->textInput()->hint('Zadajte prosím svoje priezvisko')->label('Priezvisko') ?>
+            <?= $form->field($basicInfo, 'maidenLastname')->textInput()->hint('Zadajte prosím svoje rodné priezvisko')->label('Rodné priezvisko') ?>
+            <?= $form->field($basicInfo, 'birthNo')->textInput()->hint('Zadajte prosím svoje rodné číslo')->label('Rodné číslo') ?>
 
             <?php ActiveForm::end() ?>
 
@@ -89,10 +89,10 @@ $this->title = 'Volby zo zahranicia';
                 'id' => 'proxy',
                 'options' => ['class' => 'form-horizontal'],
             ]) ?>
-            <h3>Udaje splnomocnenca</h3>
-            <?= $form->field($proxy, 'name') ?>
-            <?= $form->field($proxy, 'lastname') ?>
-            <?= $form->field($proxy, 'idNo') ?>
+            <h3>Údaje splnomocnenca</h3>
+            <?= $form->field($proxy, 'name')->textInput()->hint('Zadajte prosím krstné meno splnomocneca')->label('Meno') ?>
+            <?= $form->field($proxy, 'lastname')->textInput()->hint('Zadajte prosím priezvisko splnomocnenca')->label('Priezvisko') ?>
+            <?= $form->field($proxy, 'idNo')->textInput()->hint('Zadajte prosím číslo občianskeho preukazu alebo pasu splnomocnenca')->label('Číslo občianskeho preukazu') ?>
 
             <?php ActiveForm::end() ?>
             
@@ -102,11 +102,11 @@ $this->title = 'Volby zo zahranicia';
                 'options' => ['class' => 'form-horizontal'],
             ]) ?>
             <hr>
-            <h3>Adresa TP</h3>
-            <?= $form->field($addressSlovakia, 'street') ?>
-            <?= $form->field($addressSlovakia, 'streetNo') ?>
-            <?= $form->field($addressSlovakia, 'city') ?>
-            <?= $form->field($addressSlovakia, 'zip') ?>
+            <h3>Adresa trvalého pobytu v Slovenskej republike:</h3>
+            <?= $form->field($addressSlovakia, 'street')->textInput()->hint('Zadajte prosím ulicu Vášho trvalého pobytu')->label('Ulica') ?>
+            <?= $form->field($addressSlovakia, 'streetNo')->textInput()->hint('Zadajte prosím číslo domu ulice Vášho trvalého pobytu')->label('Číslo domu') ?>
+            <?= $form->field($addressSlovakia, 'city')->textInput()->hint('Zadajte prosím mesto Vášho trvalého pobytu')->label('Mesto') ?>
+            <?= $form->field($addressSlovakia, 'zip')->textInput()->hint('Zadajte prosím PSČ mesta Vášho trvalého pobytu')->label('PSČ') ?>
 
             <?php ActiveForm::end() ?>
             <hr>
@@ -117,11 +117,11 @@ $this->title = 'Volby zo zahranicia';
             ]) ?>
             <h3 id="foreign-header">Adresa miesta pobytu v cudzine (pre zaslanie hlasovacích lístkov a obálok):</h3>
             <h3 id="local-header">Hlasovací preukaz žiadam zaslať na adresu:</h3>
-            <?= $form->field($addressForeign, 'street') ?>
-            <?= $form->field($addressForeign, 'streetNo') ?>
-            <?= $form->field($addressForeign, 'city') ?>
-            <?= $form->field($addressForeign, 'zip') ?>
-            <?= $form->field($addressForeign, 'country') ?>
+            <?= $form->field($addressForeign, 'street')->textInput()->hint('Zadajte prosím ulicu, kde chcete odoslať hlasovacie lístky')->label('Ulica') ?>
+            <?= $form->field($addressForeign, 'streetNo')->textInput()->hint('Zadajte prosím číslo domu ulice, kde chcete odoslať hlasovacie lístky')->label('Číslo domu') ?>
+            <?= $form->field($addressForeign, 'city')->textInput()->hint('Zadajte prosím mesto, kde chcete odoslať hlasovacie lístky')->label('Mesto') ?>
+            <?= $form->field($addressForeign, 'zip')->textInput()->hint('Zadajte prosím PSČ mesta, kde chcete odoslať hlasovacie lístky')->label('PSČ') ?>
+            <?= $form->field($addressForeign, 'country')->textInput()->hint('Zadajte prosím štát, kde chcete odoslať hlasovacie lístky')->label('Štát') ?>
 
             <?php ActiveForm::end() ?>
 
@@ -133,8 +133,8 @@ $this->title = 'Volby zo zahranicia';
             <div class="col-lg-12">
                 <iframe id="preview" width=100% height= 500px>
                 </iframe>  
-                <p><a class="btn btn-lg btn-success" href="#pdf" id='download-button' role="button" onclick="createDocument(false,'TP')">Download</a></p>         
-                <p><a class="btn btn-lg btn-success" href="#sign" role="button">podpis</a></p>
+                <p><a class="btn btn-lg btn-success" href="#pdf" id='download-button' role="button" onclick="createDocument(false,'TP')">Stiahnuť</a></p>         
+                <p><a class="btn btn-lg btn-success" href="#sign" role="button">Podpis</a></p>
                 <p><a class="btn btn-lg btn-success" href="#photo" id='photo-link' role="button">IDcko</a></p>         
             </div>
         </div>
@@ -144,8 +144,8 @@ $this->title = 'Volby zo zahranicia';
                             <canvas></canvas>
                         </div>
                     <div class="signature-controls">
-                        <button id="clear-button" class="btn btn-default">Vycist</button>
-                        <a id="sign-button" class="btn btn-lg btn-success" onclick="createDocument(true)" href="#pdf">Uloz</a>
+                        <button id="clear-button" class="btn btn-default">Znovu podpísať</button>
+                        <a id="sign-button" class="btn btn-lg btn-success" onclick="createDocument(true)" href="#pdf">Vlož podpis do PDF dokumentu</a>
                     </div>
                     <input style="display:none;" type="text" id="signature" value="">
             </div>
@@ -160,7 +160,7 @@ $this->title = 'Volby zo zahranicia';
                         </div>
                         <img id="camera-preview" style= "height:200px">
                     
-                        <a id="id-button" class="btn btn-lg btn-success" href="#pdf">Uloz</a>
+                        <a id="id-button" class="btn btn-lg btn-success" href="#pdf">Ulož</a>
             </div>
         
         </div>

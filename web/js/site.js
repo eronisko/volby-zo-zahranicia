@@ -46,7 +46,26 @@ function preukazSplnomocnenec(){
 
 }
 
-
+function getAddressOneLine(id){
+	var ret = "";
+	if($('#'+id+'-street').val()){
+		ret += $('#'+id+'-street').val() + " " + $('#'+id+'-streetno').val();
+	}else{
+		ret += $('#'+id+'-city').val() + " " + $('#'+id+'-streetno').val();
+	}
+	if(ret!= " ") ret+= ", ";
+	
+	ret+= $('#'+id+'-zip').val() + " " + $('#'+id+'-city').val();
+	
+	if(ret!= " ") ret+= ", ";
+	
+	if(id ==  "addressslovakia"){
+		ret += "Slovenská republika";
+	}else{
+		ret+= $('#'+id+'-country').val();
+	}
+	return ret;
+}
 
 function nastavObec(){
 						var o = [];
@@ -195,7 +214,7 @@ if(type == 'TP'){
 						pageBreak: 'before' 
 					},
 					{
-						text: $('#addressforeign-street').val() + ', ' + $('#addressforeign-streetno').val() + ', ' + $('#addressforeign-city').val() + ', ' + $('#addressforeign-zip').val()  + ', ' + $('#addressforeign-country').val(),
+						text: getAddressOneLine('addressforeign'),
 						alignment: 'center',
 					},
 					
@@ -326,26 +345,30 @@ if (type==="TP" || type ==="noTP"){
 
 
 }
-if(type === "ps"){
-preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu a splnomocnenie na jeho prevzatie';
-preukazDelivery = [
-{
-			text: 'Na prevzatie hlasovacieho preukazu podľa § 46 ods. 6 zákona  splnomocňujem:',
-			style: 'line',
-			alignment: 'left'
-		},
-		{ 
-			text: 'Meno: ' + $('#proxy-name').val() + ' Priezvisko: ' + $('#proxy-lastname').val(),
-			style: 'line',
-			//style: 'header', 
-		//	bold: false 
-		},
-		{
-			text: 'Číslo občianskeho preukazu: ' + $('#proxy-idno').val(),
-			style: 'line'
-		}
-]
-}
+	if(type === "pp"){
+		preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu';
+		preukazDelivery = [
+			{
+				text: 'Hlasovací preukaz žiadam zaslať na adresu:',
+				style: 'line',
+				alignment: 'left'
+			},
+			{ 
+				columns:[
+					{
+						text: ['Meno: ',{text: $('#basicinfo-name').val(),style: 'value'} ],
+					},
+					{
+						text: ['Priezvisko: ',{text: $('#basicinfo-lastname').val(),style: 'value'} ],
+					}
+				]
+			},
+			{
+				text: ['Adresa: ' , { text: getAddressOneLine('addressforeign'),style: 'value'} ],
+				style: 'line'
+			}
+		]
+	}
 
 	if(type === "ps"){
 		preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu a splnomocnenie na jeho prevzatie';
@@ -410,7 +433,7 @@ if(type === "pp" || type === "ps"){
 			]
 		},
 		{
-			text: ['Adresa trvalého pobytu: ', {text: $('#addressslovakia-street').val() + ', ' + $('#addressslovakia-streetno').val() + ', ' + $('#addressslovakia-city').val() + ', ' + $('#addressslovakia-zip').val()  + ', Slovenská republika',style: 'value'} ],
+			text: ['Adresa trvalého pobytu: ', {text: getAddressOneLine('addressslovakia') ,style: 'value'} ],
 			style: 'line',
 		},
 		{ text: '', style: 'space'},
@@ -421,7 +444,11 @@ if(type === "pp" || type === "ps"){
 		},
 		{ text: '', style: 'space'},
 		{
-			text: 'podľa § 46 zákona č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov o vydanie hlasovacieho preukazu pre voľby do Národnej rady Slovenskej republiky v roku 2016.',
+			text: [
+				{text:'podľa § 46 zákona č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov '},
+				{text:'o vydanie hlasovacieho preukazu',bold:true}, 
+				{text:' pre voľby do Národnej rady Slovenskej republiky v roku 2016.'},
+			]
 		},
 		{ text: '', style: 'space'},
 		preukazDelivery
@@ -450,7 +477,7 @@ var dd = {
 			fontSize: 12,
 			italic: true,
 			alignment: 'justify',
-			margin: [300,10,10,10],
+			margin: [260,10,10,10],
 		},
 		line: {
             fontSize: 12,

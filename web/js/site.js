@@ -112,26 +112,27 @@ function createDocument(preview){
 	var type = 	$('#tpFlag').val();
 	// playground requires you to assign document definition to a variable called dd
 	var paragraph,localaddress = [],noTP =[],vyhlasenie=[],signature=[],idPhoto=[];
-	if($('#signature').val() != '') 
-			signature = 
-				[	
-					{ text: '', style: 'space'},
-					{ 
-						text: ['V ',{ text: $('#addressforeign-city').val(),style: 'value'} ],
-						style: 'footer',
-					},
-					{ 
-						text: ['Dátum: ',{text: ''+dd +'. ' + mm + '. ' + yyyy,style: 'value'} ],
-						style: 'footer',
-					},
-					{ 
-						image: $('#signature').val(), width:100, style : 'signatureStyle' 
-					},
-					{	
-						text:'                      Podpis                      ',
-						style: 'signatureTextStyle'
-					}
-				]; 
+	if($('#signature').val() != ''){
+		signature = 
+			[	
+				{ text: '', style: 'space'},
+				{ 
+					text: ['V ',{ text: $('#addressforeign-city').val(),style: 'value'} ],
+					style: 'footer',
+				},
+				{ 
+					text: ['Dátum: ',{text: ''+dd +'. ' + mm + '. ' + yyyy,style: 'value'} ],
+					style: 'footer',
+				},
+				{ 
+					image: $('#signature').val(), width:100, style : 'signatureStyle' 
+				},
+				{	
+					text:'                      Podpis                      ',
+					style: 'signatureTextStyle'
+				}
+			]; 
+	}
 	if($('#camera-input')[0].files.length > 0){
 		idPhoto = 
 		[
@@ -145,206 +146,203 @@ function createDocument(preview){
 
 	
 	
-if(type == 'TP'){
-	paragraph = 'Podľa   § 60 ods. 1   zákona   č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov žiadam o voľbu poštou pre voľby do Národnej rady Slovenskej republiky v roku 2016.';
-	localaddress = [
-		{text:'',style:'spacesmall'},
-		{ 
-			text: 'Adresa trvalého pobytu v Slovenskej republike:',
-			style: 'line',
-			//style: 'header', 
-		    bold: true
-		},
-		{
-			columns:[
-				{ text: 'Ulica: ', style: 'line',},
-				{ text: $('#addressslovakia-street').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Číslo domu: ', style: 'line',},
-				{ text: $('#addressslovakia-streetno').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Obec: ', style: 'line',},
-				{ text: $('#addressslovakia-city').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'PSČ: ', style: 'line',},
-				{ text: $('#addressslovakia-zip').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{text:'',style:'spacesmall'},
-		{ 
-			text: 'Adresa miesta pobytu v cudzine (pre zaslanie hlasovacích lístkov a obálok):',
-			style: 'line',
-			//style: 'header', 
-		    bold: true
-		}]
-
-}else if(type == 'noTP'){
-	paragraph = 'Podľa   § 59 ods. 1   zákona   č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov žiadam o voľbu poštou pre voľby do Národnej rady Slovenskej republiky v roku 2016 a o zaslanie hlasovacích lístkov a obálok na adresu:';
-	noTP = [
-	
-		{text:'',style:'spacesmall'},
-			{
-				text:'Prílohy:',
-				style: 'header',
-				alignment: 'left'
+	if(type == 'TP'){
+		paragraph = 'Podľa   § 60 ods. 1   zákona   č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov žiadam o voľbu poštou pre voľby do Národnej rady Slovenskej republiky v roku 2016.';
+		localaddress = [
+			{text:'',style:'spacesmall'},
+			{ 
+				text: 'Adresa trvalého pobytu v Slovenskej republike:',
+				style: 'line',
+				//style: 'header', 
+				bold: true
 			},
-			{ul: [
-				'čestné vyhlásenie voliča, že nemá trvalý pobyt na území Slovenskej republiky.',
-				'fotokópia časti cestovného dokladu Slovenskej republiky s osobnými údajmi voliča alebo fotokópia osvedčenia o štátnom občianstve Slovenskej republiky voliča.',
-			]}
-	];
-	vyhlasenie = [
+			{
+				columns:[
+					{ text: 'Ulica: ', style: 'line',},
+					{ text: $('#addressslovakia-street').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Číslo domu: ', style: 'line',},
+					{ text: $('#addressslovakia-streetno').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Obec: ', style: 'line',},
+					{ text: $('#addressslovakia-city').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'PSČ: ', style: 'line',},
+					{ text: $('#addressslovakia-zip').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{text:'',style:'spacesmall'},
+			{ 
+				text: 'Adresa miesta pobytu v cudzine (pre zaslanie hlasovacích lístkov a obálok):',
+				style: 'line',
+				//style: 'header', 
+				bold: true
+			}
+		];
+	}else 
+	if(type == 'noTP'){
+		paragraph = 'Podľa   § 59 ods. 1   zákona   č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov žiadam o voľbu poštou pre voľby do Národnej rady Slovenskej republiky v roku 2016 a o zaslanie hlasovacích lístkov a obálok na adresu:';
+		noTP = [
+		
+			{text:'',style:'spacesmall'},
+				{
+					text:'Prílohy:',
+					style: 'header',
+					alignment: 'left'
+				},
+				{ul: [
+					'čestné vyhlásenie voliča, že nemá trvalý pobyt na území Slovenskej republiky.',
+					'fotokópia časti cestovného dokladu Slovenskej republiky s osobnými údajmi voliča alebo fotokópia osvedčenia o štátnom občianstve Slovenskej republiky voliča.',
+				]}
+		];
+		vyhlasenie = [
 
-					{
-						text: $('#basicinfo-name').val() + ' ' + $('#basicinfo-lastname').val() + ' ' + $('#basicinfo-birthno').val(),
-						alignment: 'center',
-						pageBreak: 'before' 
-					},
-					{
-						text: getAddressOneLine('addressforeign'),
-						alignment: 'center',
-					},
-					
-					{text:'',style:'space'},
-					{ 
-						text: 'ČESTNÉ VYHLÁSENIE', 
-						style: 'header', 
-						alignment: 'center' 
-					},
-					{text:'',style:'space'},
-					{
-						text: 'Na účely voľby poštou do Národnej rady Slovenskej republiky v roku 2016',
-						alignment: 'center' 
-					},
-					{text:'',style:'space'},
-					{ 
-						text: 'čestne vyhlasujem,', 
-						style: 'header', 
-						alignment: 'center' 
-					},
-					{text:'',style:'space'},
-					{
-						text: 'že nemám trvalý pobyt na území Slovenskej republiky.'
-					},
-					{text:'',style:'space'},
-					signature
+						{
+							text: $('#basicinfo-name').val() + ' ' + $('#basicinfo-lastname').val() + ' ' + $('#basicinfo-birthno').val(),
+							alignment: 'center',
+							pageBreak: 'before' 
+						},
+						{
+							text: getAddressOneLine('addressforeign'),
+							alignment: 'center',
+						},
+						
+						{text:'',style:'space'},
+						{ 
+							text: 'ČESTNÉ VYHLÁSENIE', 
+							style: 'header', 
+							alignment: 'center' 
+						},
+						{text:'',style:'space'},
+						{
+							text: 'Na účely voľby poštou do Národnej rady Slovenskej republiky v roku 2016',
+							alignment: 'center' 
+						},
+						{text:'',style:'space'},
+						{ 
+							text: 'čestne vyhlasujem,', 
+							style: 'header', 
+							alignment: 'center' 
+						},
+						{text:'',style:'space'},
+						{
+							text: 'že nemám trvalý pobyt na území Slovenskej republiky.'
+						},
+						signature
 
-	];
+		];
 
-}
+	}
 
-if (type==="TP" || type ==="noTP"){
-	formContent =[
-		{ 
-			text: 'Žiadosť', 
-			style: 'header', 
-			alignment: 'center' 
-		},
-		{ 
-			text: 'o voľbu poštou', 
-			style: 'header', 
-			alignment: 'center' 
-		},
-		{ 
-			text: 'pre voľby do Národnej rady Slovenskej republiky v roku 2016', 
-			style: 'header', 
-			alignment: 'center' 
-		},
-		{text:'',style:'space'},
-		{ 
-			text: $('#adresa').val(),
-			style: 'address', 
-		},
-		{text:'',style:'space'},
-		{ 
-			text: [
-				paragraph
-				],
-		},
-		{text:'',style:'spacesmall'},
-		{
-			columns:[
-				{ text: 'Meno: ', style: 'line',},
-				{ text: $('#basicinfo-name').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Priezvisko: ', style: 'line',},
-				{ text: $('#basicinfo-lastname').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Rodné priezvisko: ', style: 'line',},
-				{ text: $('#basicinfo-maidenlastname').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Rodné číslo: ', style: 'line',},
-				{ text: $('#basicinfo-birthno').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		localaddress,
-		{
-			columns:[
-				{ text: 'Ulica: ', style: 'line',},
-				{ text: $('#addressforeign-street').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Číslo domu: ', style: 'line',},
-				{ text: $('#addressforeign-streetno').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Obec: ', style: 'line',},
-				{ text: $('#addressforeign-city').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'PSČ: ', style: 'line',},
-				{ text: $('#addressforeign-zip').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		{
-			columns:[
-				{ text: 'Štát: ', style: 'line',},
-				{ text: $('#addressforeign-country').val(),style:'value'},
-				{ text:''}
-			]
-		},
-		noTP
-
-	]
-
-
-}
+	if (type==="TP" || type ==="noTP"){
+		formContent =[
+			{ 
+				text: 'Žiadosť', 
+				style: 'header', 
+				alignment: 'center' 
+			},
+			{ 
+				text: 'o voľbu poštou', 
+				style: 'header', 
+				alignment: 'center' 
+			},
+			{ 
+				text: 'pre voľby do Národnej rady Slovenskej republiky v roku 2016', 
+				style: 'header', 
+				alignment: 'center' 
+			},
+			{text:'',style:'space'},
+			{ 
+				text: $('#adresa').val(),
+				style: 'address', 
+			},
+			{text:'',style:'space'},
+			{ 
+				text: [
+					paragraph
+					],
+			},
+			{text:'',style:'spacesmall'},
+			{
+				columns:[
+					{ text: 'Meno: ', style: 'line',},
+					{ text: $('#basicinfo-name').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Priezvisko: ', style: 'line',},
+					{ text: $('#basicinfo-lastname').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Rodné priezvisko: ', style: 'line',},
+					{ text: $('#basicinfo-maidenlastname').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Rodné číslo: ', style: 'line',},
+					{ text: $('#basicinfo-birthno').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			localaddress,
+			{
+				columns:[
+					{ text: 'Ulica: ', style: 'line',},
+					{ text: $('#addressforeign-street').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Číslo domu: ', style: 'line',},
+					{ text: $('#addressforeign-streetno').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Obec: ', style: 'line',},
+					{ text: $('#addressforeign-city').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'PSČ: ', style: 'line',},
+					{ text: $('#addressforeign-zip').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			{
+				columns:[
+					{ text: 'Štát: ', style: 'line',},
+					{ text: $('#addressforeign-country').val(),style:'value'},
+					{ text:''}
+				]
+			},
+			noTP
+		]
+	}
 	if(type === "pp"){
 		preukazHeader = 'Žiadosť o vydanie hlasovacieho preukazu';
 		preukazDelivery = [
@@ -395,128 +393,128 @@ if (type==="TP" || type ==="noTP"){
 		]
 	}
 
-if(type === "pp" || type === "ps"){
-	formContent = [
-		{ 
-			text: $('#adresa').val(),
-			style: 'address', 
-		},
-		{ text: '', style: 'space'},
-		{ 
-			text: preukazHeader, 
-			style: 'header', 
-			alignment: 'left' 
-		},
-		{ text: '', style: 'space'},
-		{
-			columns:[
-				{
-					text: ['Meno: ', {text: $('#basicinfo-name').val(),style: 'value'} ],
-					style: 'line',
-				},
-				{
-					text: ['Priezvisko: ' , {text: $('#basicinfo-lastname').val(),style: 'value'} ],
-					style: 'line',
-				},
-			]
-		},
-		{
-			columns:[
-				{
-					text: ['Rodné číslo: ', {text: $('#basicinfo-birthno').val(),style: 'value'} ],
-					style: 'line',
-				},
-				{
-					text: ['Štátna príslušnosť: ', {text: 'Slovenská republika',style: 'value'} ],
-					style: 'line',
-				},
-			]
-		},
-		{
-			text: ['Adresa trvalého pobytu: ', {text: getAddressOneLine('addressslovakia') ,style: 'value'} ],
-			style: 'line',
-		},
-		{ text: '', style: 'space'},
-		{ 
-			text: 'žiadam', 
-			style: 'header', 
-			alignment: 'center' 
-		},
-		{ text: '', style: 'space'},
-		{
-			text: [
-				{text:'podľa § 46 zákona č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov '},
-				{text:'o vydanie hlasovacieho preukazu',bold:true}, 
-				{text:' pre voľby do Národnej rady Slovenskej republiky v roku 2016.'},
-			]
-		},
-		{ text: '', style: 'space'},
-		preukazDelivery
-	]
-}
-var dd = {
-	content: [
-		formContent,
-		signature,
-		vyhlasenie,
-		idPhoto,
-	],
-	styles: {
-		header: {
-			fontSize: 12,
-			bold: true,
-			alignment: 'justify'
-		},
-		value: {
-			fontSize: 12,
-			bold: true,
-			decoration: 'underline', 
-			decorationStyle: 'dotted'
-		},
-		address: {
-			fontSize: 12,
-			italic: true,
-			alignment: 'justify',
-			margin: [260,10,10,10],
-		},
-		line: {
-            fontSize: 12,
-            margin:[0,0,0,0],
-            padding:[0,0,0,0]
-        },
-        footer:{
-            fontSize: 12,
-            margin:[0,0,0,0],
-            padding:[0,0,0,0]
-        },
-        space:{
-            fontSize: 12,
-            margin:[0,50,0,0]
-        },
-        spacesmall:{
-            fontSize: 12,
-            margin:[0,20,0,0]
-        },
-        signatureStyle:{
-        	alignment: 'right'
-        },
-		signatureTextStyle:{
-			decoration: 'overline',
-			decorationStyle: 'dotted',
-			alignment:'right',
-			margin: [30,10],
-			fontSize: 9			
+	if(type === "pp" || type === "ps"){
+		formContent = [
+			{ 
+				text: $('#adresa').val(),
+				style: 'address', 
+			},
+			{ text: '', style: 'space'},
+			{ 
+				text: preukazHeader, 
+				style: 'header', 
+				alignment: 'left' 
+			},
+			{ text: '', style: 'space'},
+			{
+				columns:[
+					{
+						text: ['Meno: ', {text: $('#basicinfo-name').val(),style: 'value'} ],
+						style: 'line',
+					},
+					{
+						text: ['Priezvisko: ' , {text: $('#basicinfo-lastname').val(),style: 'value'} ],
+						style: 'line',
+					},
+				]
+			},
+			{
+				columns:[
+					{
+						text: ['Rodné číslo: ', {text: $('#basicinfo-birthno').val(),style: 'value'} ],
+						style: 'line',
+					},
+					{
+						text: ['Štátna príslušnosť: ', {text: 'Slovenská republika',style: 'value'} ],
+						style: 'line',
+					},
+				]
+			},
+			{
+				text: ['Adresa trvalého pobytu: ', {text: getAddressOneLine('addressslovakia') ,style: 'value'} ],
+				style: 'line',
+			},
+			{ text: '', style: 'space'},
+			{ 
+				text: 'žiadam', 
+				style: 'header', 
+				alignment: 'center' 
+			},
+			{ text: '', style: 'space'},
+			{
+				text: [
+					{text:'podľa § 46 zákona č. 180/2014 Z. z. o podmienkach výkonu volebného práva a o zmene a doplnení niektorých zákonov '},
+					{text:'o vydanie hlasovacieho preukazu',bold:true}, 
+					{text:' pre voľby do Národnej rady Slovenskej republiky v roku 2016.'},
+				]
+			},
+			{ text: '', style: 'space'},
+			preukazDelivery
+		]
+	}
+	var dd = {
+		content: [
+			formContent,
+			signature,
+			vyhlasenie,
+			idPhoto,
+		],
+		styles: {
+			header: {
+				fontSize: 12,
+				bold: true,
+				alignment: 'justify'
+			},
+			value: {
+				fontSize: 12,
+				bold: true,
+				decoration: 'underline', 
+				decorationStyle: 'dotted'
+			},
+			address: {
+				fontSize: 12,
+				italic: true,
+				alignment: 'justify',
+				margin: [260,10,10,10],
+			},
+			line: {
+				fontSize: 12,
+				margin:[0,0,0,0],
+				padding:[0,0,0,0]
+			},
+			footer:{
+				fontSize: 12,
+				margin:[0,0,0,0],
+				padding:[0,0,0,0]
+			},
+			space:{
+				fontSize: 12,
+				margin:[0,50,0,0]
+			},
+			spacesmall:{
+				fontSize: 12,
+				margin:[0,20,0,0]
+			},
+			signatureStyle:{
+				alignment: 'right'
+			},
+			signatureTextStyle:{
+				decoration: 'overline',
+				decorationStyle: 'dotted',
+				alignment:'right',
+				margin: [30,10],
+				fontSize: 9			
+			}
 		}
-    }
-}
-if(preview === true){
-	pdfMake.createPdf(dd).getDataUrl(function(result){
-		$('#preview').attr('src',result);
-	});
+	}
+	if(preview === true){
+		pdfMake.createPdf(dd).getDataUrl(function(result){
+			$('#preview').attr('src',result);
+		});
 
-} else
-pdfMake.createPdf(dd).open()
-
+	} else {
+	pdfMake.createPdf(dd).open()
+	}
 }
 
 var canvas = document.querySelector("canvas");

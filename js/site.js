@@ -140,52 +140,67 @@ function getAddressOneLine(id) {
 var cityName;
 
 function nacitajKraje(){
-	var options = $("#addressslovakia-kraj");
-	options.find('option').remove();
-	for (var key in election.cities) {
-		options.append($("<option />").text(key));
-	}
-	nastavKraj();
+  var options = $("#addressslovakia-kraj");
+  options.find('option').remove();
+  options.append($("<option />").text(""));
+
+  for (var key in election.cities) {
+    options.append($("<option />").text(key));
+  }
+
+  nastavKraj();
 }
 function nastavKraj(){
-	var options = $("#addressslovakia-okres");
-	options.find('option').remove();
-    var kraj = $("#addressslovakia-kraj").val();
-	for (var key in election.cities[kraj]) {
-		options.append($("<option />").text(key));
-	}
-	nastavOkres();
+  var options = $("#addressslovakia-okres");
+  options.find('option').remove();
+  options.append($("<option />").text(""));
+
+  var kraj = $("#addressslovakia-kraj").val();
+
+  if (kraj.length != 0) {
+    for (var key in election.cities[kraj]) {
+      options.append($("<option />").text(key));
+    }
+  }
+
+  nastavOkres();
 }
 function nastavOkres(){
-	var options = $("#addressslovakia-city");
-	options.find('option').remove();
-    var kraj = $("#addressslovakia-kraj").val();
-    var okres = $("#addressslovakia-okres").val();
-	for (var key in election.cities[kraj][okres]) {
-		options.append($("<option />").val(key).text(election.cities[kraj][okres][key][10]));
-	}
-	nastavObec();
+  var options = $("#addressslovakia-city");
+  options.find('option').remove();
+  options.append($("<option />").text(""));
+
+  var kraj = $("#addressslovakia-kraj").val();
+  var okres = $("#addressslovakia-okres").val();
+
+  if (okres.length != 0) {
+    for (var key in election.cities[kraj][okres]) {
+      options.append($("<option />").val(key).text(election.cities[kraj][okres][key][10]));
+    }
+  }
+
+  nastavObec();
 }
 function getObec(){
-	
   var ico = $("#addressslovakia-city").val();
   var kraj = $("#addressslovakia-kraj").val();
   var okres = $("#addressslovakia-okres").val();
-  
-    if (ico && o[kraj] && o[kraj][okres] && o[kraj][okres][ico]) {
-		return o[kraj][okres][ico][10];
-	}
-	return "Nepodarilo sa načítať obec";
+
+  if (ico && o[kraj] && o[kraj][okres] && o[kraj][okres][ico]) {
+    return o[kraj][okres][ico][10];
+  }
+  return "Nepodarilo sa načítať obec";
 }
 function nastavObec() {
-
-	// list/db of all cities comes from external file (js/cities)
+  // list/db of all cities comes from external file (js/cities)
   var o = election.cities;
 
   var adresa = "";
   var ico = $("#addressslovakia-city").val();
   var kraj = $("#addressslovakia-kraj").val();
   var okres = $("#addressslovakia-okres").val();
+
+  $("#addressslovakia-zip").val("");
   
   if (ico) {
 	
